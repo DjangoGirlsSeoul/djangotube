@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<html>
+	<head>
+		<title>Video List</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	</head>
+	<body>
+		<header class="page-header">
+			<h1><a href="/video/">Video Site</a></h1>
+		</header>
+		<div class="content container">
+      <div class="row">
+        <div class="col-md-16">
+          <h4>{{video.title}}</h4>
+          <video src="{{ video.video_url }}" controls poster="{{ video.video_poster_url }}" width="100%"></video>
+        </div>
+      </div>
+		</div>
+	</body>
+</html>

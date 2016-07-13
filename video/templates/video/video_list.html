@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<html>
+	<head>
+		<title>Video List</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	</head>
+	<body>
+		<div class="page-header">
+			<h1><a href="/">Django Girls Blog</a></h1>
+		</div>
+		<div class="content container">
+      {% for video in videos %}
+      <div class="row">
+        <div class="col-md-16">
+          <a href="/video/{{video.id}}">
+            <h4>{{video.title}}</h4>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+
+		</div>
+	</body>
+</html>
