@@ -1,10 +1,41 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from .models import Video
 
-def video_list(request):
-    videos = Video.objects.all()
-    return render(request, 'video/video_list.html', {'videos': videos})
 
-def video(request, video_id):
+def video_list(request):
+    video_list = Video.objects.all()
+    return render(request, 'video/video_list.html', {'video_list': video_list})
+
+
+def video_detail(request, video_id):
     video = Video.objects.get(id=int(video_id))
-    return render(request, 'video/video.html', {'video': video})
+    
+    if request.method == 'POST':
+        title = request.POST['title']
+        video_key = request.POST['video_key']
+
+        video.title = title
+        video.video_key = video_key
+        video.save()
+
+        return redirect(reverse('video:list'))
+
+    return render(request, 'video/video_detail.html', {'video': video})
+
+
+def video_new(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        video_key = request.POST['video_key']
+        Video.objects.create(title=title, video_key=video_key)
+        return redirect(reverse('video:list'))
+
+    return render(request, 'video/video_new.html')
+
+
+def video_delete(request, video_id):
+    video = Video.objects.get(id=video_id)
+    video.delete()
+
+    return redirect(reverse('video:list'))
