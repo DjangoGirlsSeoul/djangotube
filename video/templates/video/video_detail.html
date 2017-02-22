@@ -9,25 +9,11 @@
 <body>
 <div class="content container">
     <header class="page-header">
-        <a href="{% url 'video:list' %}">Back to Video List</a>
         <h1>Video Detail</h1>
     </header>
     <div class="row">
         <div class="col-md-16">
             <div id="player"></div>
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" class="form-control" id="title" placeholder="Title" value="{{ video.title }}">
-                </div>
-                <div class="form-group">
-                    <label for="video_key">Video Key</label>
-                    <input type="text" name="video_key" class="form-control" id="video_key" placeholder="Video Key" value="{{ video.video_key }}">
-                </div>
-                <button type="submit" class="btn btn-default">Change</button>
-                <a href="{% url 'video:delete' video.id %}" class="btn btn-danger">Delete</a>
-            </form>
         </div>
     </div>
 </div>

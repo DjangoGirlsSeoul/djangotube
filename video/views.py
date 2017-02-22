@@ -8,22 +8,6 @@ def video_list(request):
     return render(request, 'video/video_list.html', {'video_list': video_list})
 
 
-def video_detail(request, video_id):
-    video = Video.objects.get(id=int(video_id))
-    
-    if request.method == 'POST':
-        title = request.POST['title']
-        video_key = request.POST['video_key']
-
-        video.title = title
-        video.video_key = video_key
-        video.save()
-
-        return redirect(reverse('video:list'))
-
-    return render(request, 'video/video_detail.html', {'video': video})
-
-
 def video_new(request):
     if request.method == 'POST':
         title = request.POST['title']
@@ -34,8 +18,6 @@ def video_new(request):
     return render(request, 'video/video_new.html')
 
 
-def video_delete(request, video_id):
+def video_detail(request, video_id):
     video = Video.objects.get(id=video_id)
-    video.delete()
-
-    return redirect(reverse('video:list'))
+    return render(request, 'video/video_detail.html', {'video': video})
