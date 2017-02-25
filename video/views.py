@@ -14,8 +14,8 @@ def video_new(request):
         video_key = request.POST['video_key']
         Video.objects.create(title=title, video_key=video_key)
         return redirect(reverse('video:list'))
-
-    return render(request, 'video/video_new.html')
+    elif request.method == 'GET':
+        return render(request, 'video/video_new.html')
 
 
 def video_detail(request, video_id):
